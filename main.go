@@ -9,7 +9,7 @@ import (
 
 func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-	index, err := ioutil.ReadFile("public/index2.html")
+	index, err := ioutil.ReadFile("public/index.html")
 	if err != nil {
 		return events.APIGatewayProxyResponse{}, err
 	}
