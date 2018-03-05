@@ -17,10 +17,13 @@ import (
 
 func handler(request events.APIGatewayProxynRequest) (events.APIGatewayProxyResponse, error) {
 	dgraph := string("ec2-54-206-32-30.ap-southeast-2.compute.amazonaws.com:9080")
-	
-	defer conn.Close()
-        
+	    
 	conn, err := grpc.Dial(dgraph, grpc.WithInsecure())
+	if err != nil {
+          log.Fatal(err)
+        }
+	defer conn.Close()
+	
   	dg := client.NewDgraphClient(api.NewDgraphClient(conn))
 
   	resp, err := dg.NewTxn().Query(context.Background(), `{
