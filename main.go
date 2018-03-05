@@ -42,7 +42,7 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		StatusCode: 200,
 		Body:       string(resp.Json),
 		Headers: map[string]string{
-			"Content-Type": "text/html",
+			"Content-Type": "json/html",
 		},
 	}, nil
 
