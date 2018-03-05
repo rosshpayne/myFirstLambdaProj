@@ -12,7 +12,7 @@ phases:
       # Install golint, dgraph, google
       - go get -u github.com/golang/lint/golint
       - go get -u github.com/dgraph-io/dgraph/client
-      - go get -u github.com/google.golang.org/grpc
+      - go get -u google.golang.org/grpc
 
   pre_build:
     commands:
