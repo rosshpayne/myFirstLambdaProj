@@ -1,12 +1,9 @@
 package main
 
 import (
-	"io/ioutil"
  	"context"
-  	"flag"
-  	"fmt"
   	"log"
-  	"encoding/json"
+  	
 
 	 "github.com/dgraph-io/dgraph/client"
   	"github.com/dgraph-io/dgraph/protos/api"
