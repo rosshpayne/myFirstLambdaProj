@@ -9,9 +9,10 @@ phases:
       # application source code into that directory structure.
       - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/main"
 
-      # Install golint
+      # Install golint, dgraph, google
       - go get -u github.com/golang/lint/golint
       - go get -u github.com/dgraph-io/dgraph/client
+      - go get -u github.com/google.golang.org/grpc
 
   pre_build:
     commands:
