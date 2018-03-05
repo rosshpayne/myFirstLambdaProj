@@ -12,7 +12,7 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
-func handler(request events.APIGatewayProxynRequest) (events.APIGatewayProxyResponse, error) {
+func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	dgraph := string("ec2-54-206-32-30.ap-southeast-2.compute.amazonaws.com:9080")
 	    
 	conn, err := grpc.Dial(dgraph, grpc.WithInsecure())
