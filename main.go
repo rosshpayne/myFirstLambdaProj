@@ -19,7 +19,8 @@ func handler(request events.APIGatewayProxynRequest) (events.APIGatewayProxyResp
 	dgraph := string("ec2-54-206-32-30.ap-southeast-2.compute.amazonaws.com:9080")
 	
 	defer conn.Close()
-
+        
+	conn, err := grpc.Dial(dgraph, grpc.WithInsecure())
   	dg := client.NewDgraphClient(api.NewDgraphClient(conn))
 
   	resp, err := dg.NewTxn().Query(context.Background(), `{
