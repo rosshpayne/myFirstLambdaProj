@@ -13,6 +13,24 @@ import (
 )
 
 func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+
+        log.Printf("\nResource: %s", request.Resource)
+        log.Printf("\nPath: %s", request.Path)
+        log.Printf("\nHTTPMethod: %s",request.HTTPMethod)
+        log.Printf("\nBody: %s", request.Body)
+	for k,v := range request.Headers {
+		log.Printf("Header:  %s  %v",k,v)
+        }
+	for k,v := range request.QueryStringParameters {
+		log.Printf("QueryString:  %s  %v",k,v)
+        }
+	for k,v := range request.PathParameters {
+		log.Printf("PathParameters:  %s  %v",k,v)
+        }
+	for k,v := range request.StageVariables {
+		log.Printf("StageVariable:  %s  %v",k,v)
+        }
+
 	dgraph := string("ip-172-31-17-148.ap-southeast-2.compute.internal:9080")
 	    
 	conn, err := grpc.Dial(dgraph, grpc.WithInsecure())
