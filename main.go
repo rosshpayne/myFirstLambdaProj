@@ -5,7 +5,7 @@ import (
   	"log"
   	
 
-	 "github.com/dgraph-io/dgraph/client"
+	"github.com/dgraph-io/dgraph/client"
   	"github.com/dgraph-io/dgraph/protos/api"
   	"google.golang.org/grpc"
 	"github.com/aws/aws-lambda-go/events"
@@ -41,7 +41,7 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	}
         */
 	
-	log.Printf("%s\n","Completed Query..");
+	log.Printf("%s\n","Completed Query..now return with JSON in body");
 	
 	return events.APIGatewayProxyResponse{
 		StatusCode: 200,
