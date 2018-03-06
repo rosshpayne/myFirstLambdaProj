@@ -13,7 +13,7 @@ import (
 )
 
 func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	dgraph := string("ec2-54-206-32-30.ap-southeast-2.compute.amazonaws.com:9080")
+	dgraph := string("ip-172-31-17-148.ap-southeast-2.compute.internal:9080")
 	    
 	conn, err := grpc.Dial(dgraph, grpc.WithInsecure())
 	if err != nil {
