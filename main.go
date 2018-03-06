@@ -21,6 +21,8 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
         }
 	defer conn.Close()
 	
+	log.Printf("%s\n","About to connect to dgraph using ip-172-31-17-148.ap-southeast-2.compute.internal:9080");
+	
   	dg := client.NewDgraphClient(api.NewDgraphClient(conn))
 
   	resp, err := dg.NewTxn().Query(context.Background(), `{
@@ -38,6 +40,9 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		return events.APIGatewayProxyResponse{}, err
 	}
         */
+	
+	log.Printf("%s\n","Completed Query..");
+	
 	return events.APIGatewayProxyResponse{
 		StatusCode: 200,
 		Body:       string(resp.Json),
