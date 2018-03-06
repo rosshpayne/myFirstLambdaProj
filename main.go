@@ -1,25 +1,46 @@
 package main
 
 import (
-	"io/ioutil"
  	"context"
-  	"flag"
-  	"fmt"
   	"log"
-  	"encoding/json"
+  	
 
-	 "github.com/dgraph-io/dgraph/client"
+	"github.com/dgraph-io/dgraph/client"
   	"github.com/dgraph-io/dgraph/protos/api"
   	"google.golang.org/grpc"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
-func handler(request events.APIGatewayProxynRequest) (events.APIGatewayProxyResponse, error) {
-	dgraph := string("ec2-54-206-32-30.ap-southeast-2.compute.amazonaws.com:9080")
-	
-	defer conn.Close()
+func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
+        log.Printf("\nResource: %s", request.Resource)
+        log.Printf("\nPath: %s", request.Path)
+        log.Printf("\nHTTPMethod: %s",request.HTTPMethod)
+        log.Printf("\nBody: %s", request.Body)
+	for k,v := range request.Headers {
+		log.Printf("Header:  %s  %v",k,v)
+        }
+	for k,v := range request.QueryStringParameters {
+		log.Printf("QueryString:  %s  %v",k,v)
+        }
+	for k,v := range request.PathParameters {
+		log.Printf("PathParameters:  %s  %v",k,v)
+        }
+	for k,v := range request.StageVariables {
+		log.Printf("StageVariable:  %s  %v",k,v)
+        }
+
+	dgraph := string("ip-172-31-17-148.ap-southeast-2.compute.internal:9080")
+	    
+	conn, err := grpc.Dial(dgraph, grpc.WithInsecure())
+	if err != nil {
+          log.Fatal(err)
+        }
+	defer conn.Close()
+	
+	log.Printf("%s\n","About to connect to dgraph using ip-172-31-17-148.ap-southeast-2.compute.internal:9080");
+	
   	dg := client.NewDgraphClient(api.NewDgraphClient(conn))
 
   	resp, err := dg.NewTxn().Query(context.Background(), `{
@@ -37,11 +58,14 @@ func handler(request events.APIGatewayProxynRequest) (events.APIGatewayProxyResp
 		return events.APIGatewayProxyResponse{}, err
 	}
         */
+	
+	log.Printf("%s\n","Completed Query..now return with JSON in body");
+	
 	return events.APIGatewayProxyResponse{
 		StatusCode: 200,
 		Body:       string(resp.Json),
 		Headers: map[string]string{
-			"Content-Type": "text/html",
+			"Content-Type": "application/json",
 		},
 	}, nil
 
