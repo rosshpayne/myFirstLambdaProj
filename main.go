@@ -63,7 +63,7 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	log.Printf("%s\n","Completed Query..now return with JSON in body");
 	
         //
-        // Now decode 
+        // Now unmarshal 
         //
         type map_recv map[string]string
 
