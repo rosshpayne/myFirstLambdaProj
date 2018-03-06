@@ -3,11 +3,12 @@ package main
 import (
  	"context"
   	"log"
-  	
+        "encoding/json"
 
 	"github.com/dgraph-io/dgraph/client"
   	"github.com/dgraph-io/dgraph/protos/api"
   	"google.golang.org/grpc"
+
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 )
@@ -61,6 +62,28 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	
 	log.Printf("%s\n","Completed Query..now return with JSON in body");
 	
+        //
+        // Now decode 
+        //
+        type map_recv map[string]string
+
+        //  type outt struct {  Name []mapt  `json:"bladerunner"` }       // go's json decode will return a pointer to array so we must define a slice of pointers.
+        //  type outt struct {  Bladerunner []mapt `json:"bladerunner"` } // this works but tag is uncessary (see next example). Note field names must be upper case to make visible.
+
+        type decode_type  struct {  Bladerunner []map_recv }              //  this works as Go will check for field name in a case insensitive manner. 
+        var lines_ decode_type
+	
+
+        if  err:=json.Unmarshal([]byte(resp.Json),&lines_); err != nil {  // pass in pointer so receiver  can be populated inplace.
+             panic(err)
+        }
+
+        for i,v := range lines_.Bladerunner {                             // slice of maps
+           for k2,v2 := range v {
+	      log.Printf("\nKey, value   %d  %s  %s",i,k2,v2)
+           }
+        } 
+
 	return events.APIGatewayProxyResponse{
 		StatusCode: 200,
 		Body:       string(resp.Json),
