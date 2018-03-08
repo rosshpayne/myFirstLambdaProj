@@ -3,6 +3,7 @@ package main
 import (
  	"context"
   	"log"
+	"strings"
         "encoding/json"
 
 	"github.com/dgraph-io/dgraph/client"
@@ -17,6 +18,16 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 
         log.Printf("\nResource: %s", request.Resource)
         log.Printf("\nPath: %s", request.Path)
+
+
+	variables := make(map[string]string)
+	variables["$Movie"] = "Blade Runnner"
+	if len(request.Path) > 0 {
+		pathItem:=strings.Split(request.Path[1:],"/")
+		if pathItem[0] == "Movie" {
+			variables["$Movie"] = pathItem[1]
+		}
+        }
         log.Printf("\nHTTPMethod: %s",request.HTTPMethod)
         log.Printf("\nBody: %s", request.Body)
 	for k,v := range request.Headers {
@@ -53,10 +64,6 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
   			}
 			}`
 
-	variables := make(map[string]string)
-	log.Printf("len map %d",len(variables))
-	variables["$Movie"] = "Blade Runner"
-	log.Printf("len map %d",len(variables))
 
   	resp, err := dg.NewTxn().QueryWithVars(context.Background(),q,variables)
 
