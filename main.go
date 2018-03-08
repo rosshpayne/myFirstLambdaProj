@@ -25,7 +25,7 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	if len(request.Path) > 0 {
 		pathItem:=strings.Split(request.Path[1:],"/")
 		if pathItem[0] == "Movie" {
-			variables["$Movie"] = pathItem[1]
+			variables["$Movie"] = strings.Replace(pathItem[1],"%20"," ",-1)
 		}
         }
         log.Printf("\nHTTPMethod: %s",request.HTTPMethod)
