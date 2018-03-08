@@ -20,16 +20,16 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
         log.Printf("\nHTTPMethod: %s",request.HTTPMethod)
         log.Printf("\nBody: %s", request.Body)
 	for k,v := range request.Headers {
-		log.Printf("Header:  %s  %v",k,v)
+	     log.Printf("Header:  %s  %v",k,v)
         }
 	for k,v := range request.QueryStringParameters {
-		log.Printf("QueryString:  %s  %v",k,v)
+	     log.Printf("QueryString:  %s  %v",k,v)
         }
 	for k,v := range request.PathParameters {
-		log.Printf("PathParameters:  %s  %v",k,v)
+	     log.Printf("PathParameters:  %s  %v",k,v)
         }
 	for k,v := range request.StageVariables {
-		log.Printf("StageVariable:  %s  %v",k,v)
+	     log.Printf("StageVariable:  %s  %v",k,v)
         }
 
 	dgraph := string("ip-172-31-17-148.ap-southeast-2.compute.internal:9080")
@@ -44,27 +44,37 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	
   	dg := client.NewDgraphClient(api.NewDgraphClient(conn))
 
-  	resp, err := dg.NewTxn().Query(context.Background(), `{
-  			bladerunner(func: eq(name@en, "Blade Runner")) {
+        const q string =  `query Bladerunner($Movie: string) {
+  			bladerunner(func: eq(name@en,$Movie )) {
     					uid
     					name@en
     					initial_release_date
     					netflix_id
   			}
-			}`)
-	
-	/*
-	index, err := ioutil.ReadFile("public/index.html")
+			}`
+
+	variables := make(map[string]string)
+	log.Printf("len map %d",len(variables))
+	variables["$Movie"] = "Blade Runner"
+	log.Printf("len map %d",len(variables))
+
+  	resp, err := dg.NewTxn().QueryWithVars(context.Background(),q,variables)
+
 	if err != nil {
-		return events.APIGatewayProxyResponse{}, err
+		log.Fatal(err)
 	}
-        */
 	
 	log.Printf("%s\n","Completed Query..now return with JSON in body");
 	
         //
         // Now unmarshal 
         //
+        //type lineT struct {
+        //	            Uid   string     `json:"uid"`
+	//                  Name  string     `json:"name@en"`
+        //                  Rdate  string    `json:"initial_release_date"`}
+	//type outt struct {  Name  []*lineT   `json:"bladerunner"` }          // go's json decode will return a pointer to array so we must define a slice of pointers.
+
         type recvT map[string]string
 
         //  type outt struct {  Name []mapt  `json:"bladerunner"` }       // go's json decode will return a pointer to array so we must define a slice of pointers.
