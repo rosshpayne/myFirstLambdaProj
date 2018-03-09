@@ -18,8 +18,6 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 
         log.Printf("\nResource: %s", request.Resource)
         log.Printf("\nPath: %s", request.Path)
-
-
 	variables := make(map[string]string)
 	variables["$Movie"] = "Blade Runnner"
 	if len(request.Path) > 0 {
