@@ -55,6 +55,7 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 
         const q string =  `query Bladerunner($Movie: string) {
   			bladerunner(func: eq(name@en,$Movie )) {
+					uid
     					name@en
     					initial_release_date
     					netflix_id
