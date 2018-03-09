@@ -1,7 +1,7 @@
 version: 0.2
 
 phases:
-
+  preisntall:  added this line
   install:
     commands:
 
