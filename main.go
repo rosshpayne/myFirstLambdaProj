@@ -3,8 +3,8 @@ package main
 import (
  	"context"
   	"log"
-	"strings"
         "encoding/json"
+	"strings"
 
 	"github.com/dgraph-io/dgraph/client"
   	"github.com/dgraph-io/dgraph/protos/api"
@@ -16,8 +16,8 @@ import (
 
 func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-        log.Printf("\nResource: %s", request.Resource)
         log.Printf("\nPath: %s", request.Path)
+        log.Printf("\nResource: %s", request.Resource)
 	variables := make(map[string]string)
 	variables["$Movie"] = "Blade Runnner"
 	if len(request.Path) > 0 {
