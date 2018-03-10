@@ -56,10 +56,9 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 			}`)
 	
 	/*
-	index, err := ioutil.ReadFile("public/index.html")
-	if err != nil {
-		return events.APIGatewayProxyResponse{}, err
-	}
+	Another major change here...
+	
+	and to here...
         */
 	
 	log.Printf("%s\n","Completed Query..now return with JSON in body");
