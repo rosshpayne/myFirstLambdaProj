@@ -13,6 +13,9 @@ import (
 )
 
 func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	// code change for Y123 branch on central server
+	//   this ia a big change....
+	//    continuing...
 
         log.Printf("\nResource: %s", request.Resource)
         log.Printf("\nPath: %s", request.Path)
