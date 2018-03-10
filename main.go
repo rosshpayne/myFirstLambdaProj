@@ -10,8 +10,8 @@ import (
   	"github.com/dgraph-io/dgraph/protos/api"
   	"google.golang.org/grpc"
 
-	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/aws/aws-lambda-go/events"
 )
 
 func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
