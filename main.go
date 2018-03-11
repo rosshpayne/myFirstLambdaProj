@@ -16,6 +16,10 @@ import (
 
 func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
+	// FeatureB big change
+	//
+	//  end FeatureB change
+
         log.Printf("\nPath: %s", request.Path)
         log.Printf("\nResource: %s", request.Resource)
 	variables := make(map[string]string)
