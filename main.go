@@ -20,6 +20,10 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	///
 	// XXXXXXXXXXXXX
 
+	// FeatureD change
+	///
+	// End FeatureD
+
         log.Printf("\nResource: %s", request.Resource)
         log.Printf("\nPath: %s", request.Path)
 	variables := make(map[string]string)
