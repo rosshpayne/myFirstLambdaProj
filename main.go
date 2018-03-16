@@ -18,7 +18,7 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 
 
 	// change to master v1
-	// change now to v2....zip file replicated to sydney:s3
+	// change now to v2....zip file replicated to sydney:s3 and again... test replic is working
         // 
 
         log.Printf("\nPath: %s", request.Path)
