@@ -6,8 +6,8 @@ import (
         "encoding/json"
 	"strings"
 
-	"github.com/dgraph-io/dgraph/client"
-  	"github.com/dgraph-io/dgraph/protos/api"
+	"github.com/dgraph-io/dgo"
+  	"github.com/dgraph-io/dgo/protos/api"
   	"google.golang.org/grpc"
 
 	"github.com/aws/aws-lambda-go/lambda"
@@ -56,7 +56,7 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	
 	log.Printf("%s\n","About to connect to dgraph using ip-172-31-17-148.ap-southeast-2.compute.internal:9080");
 	
-  	dg := client.NewDgraphClient(api.NewDgraphClient(conn))
+  	dg := dgo.NewDgraphClient(api.NewDgraphClient(conn))
 
         const q string =  `query Bladerunner($Movie: string) {
   			bladerunner(func: eq(name@en,$Movie )) {
