@@ -16,6 +16,9 @@ import (
 
 func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
+
+	// change to master v1
+
         log.Printf("\nPath: %s", request.Path)
         log.Printf("\nResource: %s", request.Resource)
 	variables := make(map[string]string)
