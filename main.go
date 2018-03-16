@@ -18,6 +18,8 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 
 
 	// change to master v1
+	// change now to v2....zip file replicated to sydney:s3
+        // 
 
         log.Printf("\nPath: %s", request.Path)
         log.Printf("\nResource: %s", request.Resource)
