@@ -16,24 +16,6 @@ import (
 
 func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	
-	// A change
-	///
-	// XXXXXXXXXXXXX
-
-	// FeatureD change....extended
-	///
-	// End FeatureD
-
-	//   FeatureC change
-	///
-	// End FeatureC
-
-        //  Try to get to push to origin_bb
-        //
-
-	// new repo in BB
-        //
-
 
         log.Printf("\nPath: %s", request.Path)
         log.Printf("\nResource: %s", request.Resource)
