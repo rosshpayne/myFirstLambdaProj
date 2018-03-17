@@ -21,6 +21,9 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	// change now to v2....zip file replicated to sydney:s3 and again... test replic is working
         // 
 
+	// change to test ssh webhook....
+ 	//
+
         log.Printf("\nPath: %s", request.Path)
         log.Printf("\nResource: %s", request.Resource)
 	variables := make(map[string]string)
