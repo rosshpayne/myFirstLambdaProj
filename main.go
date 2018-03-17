@@ -28,7 +28,8 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	///
 	// End FeatureC
 
-
+        //  Try to get to push to origin_bb
+        //
         log.Printf("\nPath: %s", request.Path)
         log.Printf("\nResource: %s", request.Resource)
 	variables := make(map[string]string)
