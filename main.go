@@ -21,7 +21,7 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	// change now to v2....zip file replicated to sydney:s3 and again... test replic is working
         // 
 
-	// change to test ssh webhook....
+	// change to test ssh webhook....and again after correcting IPs
  	//
 
         log.Printf("\nPath: %s", request.Path)
