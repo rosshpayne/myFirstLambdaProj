@@ -15,6 +15,18 @@ import (
 )
 
 func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	
+	// A change
+	///
+	// XXXXXXXXXXXXX
+
+	// FeatureD change....extended
+	///
+	// End FeatureD
+
+	//   FeatureC change
+	///
+	// End FeatureC
 
 
         log.Printf("\nPath: %s", request.Path)
