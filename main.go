@@ -27,7 +27,7 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 			variables["$Movie"] = strings.Replace(pathItem[1],"%20"," ",-1)
 		}
         }
-        log.Printf("\nvariable movie %s",variables[$Movie]);
+        log.Printf("\nvariable movie %s",variables["$Movie"]);
         log.Printf("\nHTTPMethod: %s",request.HTTPMethod)
         log.Printf("\nBody: %s", request.Body)
 	for k,v := range request.Headers {
